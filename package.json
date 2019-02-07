@@ -1,0 +1,14 @@
+{
+  "name": "query-preperator",
+  "version": "0.0.0",
+  "description": "Preps query items",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "author": "Emmanuel Owosekun",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.9.2"
+  }
+}
