@@ -1,6 +1,6 @@
-[absolutely]
-[everybody]
-[is]
-[free]
-[no]
-[doubt]
+absolutely
+everybody
+is
+free
+no
+doubt
