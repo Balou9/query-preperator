@@ -22,7 +22,7 @@ npm install --save-dev query-preperator
 var queryPreperator = require('queryPreperator')
 var file = process.argv[2] || './some.txt'
 
-queryPreperator(file, 'brackets', function (err, data) {
+queryPreperator(file, 'brackets', false, function (err, data) {
   if (err) throw err
   console.log(data)
 })
@@ -35,8 +35,9 @@ queryPreperator(file, 'brackets', function (err, data) {
 ### `query-preperator(file, opts, cb)`
 
 file: path to file
-opts: 'brackets', 'quotation_double'
-cb: error first callbacks
+type: 'brackets', 'double quotes'
+save: logical save results to file
+cb: error first callback
 
 ***
 

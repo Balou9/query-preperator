@@ -16,7 +16,7 @@ tape('queryPreperator - brackets - true', function (t) {
 })
 
 tape('queryPreperator - double quotes - true', function (t) {
-  queryPreperator('./some.txt', 'double_quotes', false, function (err, data) {
+  queryPreperator('./some.txt', 'double quotes', false, function (err, data) {
 
     function isdoublequoted (current) {
       return /^\".*\"$/.test(current)
