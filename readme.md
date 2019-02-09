@@ -32,12 +32,12 @@ queryPreperator(file, 'brackets', false, function (err, data) {
 
 ## API
 
-### `query-preperator(file, opts, cb)`
+### `queryPreperator(file, type, save, cb)`
 
-file: path to file
-type: 'brackets', 'double quotes'
-save: logical save results to file
-cb: error first callback
+file: path to file  
+type: 'brackets', 'double quotes'  
+save: logical save results to file  
+cb: error first callback  
 
 ***
 

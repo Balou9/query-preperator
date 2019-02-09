@@ -1,8 +1,6 @@
 var tape = require('tape')
 var queryPreperator = require('./index.js')
 
-// test for every item has comma except index 0
-
 tape('queryPreperator - brackets - true', function (t) {
   queryPreperator('./some.txt', 'brackets', false, function (err, data) {
 
