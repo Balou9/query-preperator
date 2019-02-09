@@ -4,7 +4,7 @@
 
 ***
 
-query-preperator
+Preperates items for various programming tasks
 
 ***
 
