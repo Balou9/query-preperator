@@ -4,7 +4,7 @@
 
 ***
 
-Given a list of items in a file for various programming tasks
+Select a wrapper for custom list of items in a file
 
 ***
 
