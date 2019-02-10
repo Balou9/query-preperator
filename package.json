@@ -16,7 +16,6 @@
     "url": "https://github.com/Balou9/query-preperator/issues"
   },
   "homepage": "https://github.com/Balou9/query-preperator#readme",
-  "devDependencies": {},
   "dependencies": {
     "tape": "^4.10.0"
   }
