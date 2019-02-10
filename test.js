@@ -4,15 +4,15 @@ var queryPreperator = require('./index.js')
 tape('queryPreperator - brackets - true', function (t) {
   queryPreperator('./some.txt', 'brackets', false, function (err, data) {
 
-    function isbrackets (current) {
-      return /^[,]?\[.*\]$/.test(current)
+    function isbrackets (str) {
+      return /^\[.*\]$/s.test(str)
     }
 
-    console.log(data)
-    console.log(data.split('\r\n').every(isbrackets))
+    console.log(typeof data, data)
+    console.log(isbrackets(data))
     if (err) t.end(err)
-    //t.true(data, 'true')
-    t.true(data.split('\r\n').every(isbrackets), 'isbrackets')
+    t.true(data, 'true')
+    t.true(isbrackets(data), 'isbrackets')
     t.end()
   })
 })
@@ -20,15 +20,15 @@ tape('queryPreperator - brackets - true', function (t) {
 tape('queryPreperator - double quotes - true', function (t) {
   queryPreperator('./some.txt', 'double quotes', false, function (err, data) {
 
-    function isdoublequoted (current) {
-      return /^[,]?\".*\"$/.test(current)
+    function isdoublequoted (str) {
+      return /^\".*\"$/s.test(str)
     }
 
-    console.log(data)
-    console.log(data.split('\r\n').every(isdoublequoted))
+    console.log(typeof data, data)
+    console.log(isdoublequoted(data))
     if (err) t.end(err)
-    // t.true(data, 'true')
-    t.true(data.split('\r\n').every(isdoublequoted), 'is double quoted')
+    t.true(data, 'true')
+    t.true(isdoublequoted(data), 'is double quoted')
     t.end()
   })
 })
