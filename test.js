@@ -8,8 +8,8 @@ tape('queryPreperator - brackets - true', function (t) {
       return /^[,]?\[.*\]$/.test(current)
     }
 
+    console.log(data)
     console.log(data.split('\r\n').every(isbrackets))
-
     if (err) t.end(err)
     t.true(data, 'true')
     t.true(data.split('\r\n').every(isbrackets), 'isbrackets')
@@ -24,6 +24,8 @@ tape('queryPreperator - double quotes - true', function (t) {
       return /^[,]?\".*\"$/.test(current)
     }
 
+    console.log(data)
+    console.log(data.split('\r\n').every(isdoublequoted))
     if (err) t.end(err)
     t.true(data, 'true')
     t.true(data.split('\r\n').every(isdoublequoted), 'is double quoted')
