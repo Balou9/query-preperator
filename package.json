@@ -6,8 +6,16 @@
   "scripts": {
     "test": "tape test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Balou9/query-preperator.git"
+  },
   "author": "Emmanuel Owosekun",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Balou9/query-preperator/issues"
+  },
+  "homepage": "https://github.com/Balou9/query-preperator#readme",
   "devDependencies": {
     "tape": "^4.9.2"
   }

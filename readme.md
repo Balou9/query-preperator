@@ -4,7 +4,7 @@
 
 ***
 
-Preperates items for various programming tasks
+Given a list of items in a file for various programming tasks
 
 ***
 
