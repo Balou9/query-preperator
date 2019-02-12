@@ -8,8 +8,6 @@ tape('queryPreperator - brackets - true', function (t) {
       return /^\[.*\]$/s.test(str)
     }
 
-    console.log(typeof data, data)
-    console.log(isbrackets(data))
     if (err) t.end(err)
     t.true(data, 'true')
     t.true(isbrackets(data), 'isbrackets')
@@ -24,8 +22,6 @@ tape('queryPreperator - double quotes - true', function (t) {
       return /^\".*\"$/s.test(str)
     }
 
-    console.log(typeof data, data)
-    console.log(isdoublequoted(data))
     if (err) t.end(err)
     t.true(data, 'true')
     t.true(isdoublequoted(data), 'is double quoted')

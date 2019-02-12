@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Balou9/query-preperator#readme",
   "dependencies": {
+    "commander": "^2.19.0",
+    "minimist": "^1.2.0",
     "tape": "^4.10.0"
   }
 }

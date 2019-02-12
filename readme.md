@@ -36,7 +36,7 @@ queryPreperator(file, 'brackets', false, function (err, data) {
 
 file: path to file  
 type: 'brackets', 'double quotes'  
-save: logical save results to file  
+save: logical save results to file, if false the result will be logged to the console
 cb: error first callback  
 
 ***

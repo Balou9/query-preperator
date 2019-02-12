@@ -1,5 +1,4 @@
 var fs = require('fs')
-var types = require('./type.js')
 
 function queryPreperator (file, type, save, cb) {
   fs.readFile(file, function (err, data) {
@@ -9,7 +8,7 @@ function queryPreperator (file, type, save, cb) {
       if (each != '') return each
     }).map( function (each) {
       if (type == 'brackets') return each = '[' + each + ']'
-      if (type == 'double quotes') return each = '"' + each + '"'
+      else if (type == 'double quotes') return each = '"' + each + '"'
       else return each
     }).map( function (each, i) {
       if (i == 0) return each
