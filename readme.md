@@ -13,7 +13,14 @@ Select a wrapper for list of items in a file
 Cli
 
 ```
-npm install query-preperator
+npm install -g query-preperator
+```
+
+module
+
+```
+npm install --save query-preperator
+
 ```
 
 ***
