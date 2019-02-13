@@ -4,19 +4,31 @@
 
 ***
 
-Select a wrapper for custom list of items in a file
+Select a wrapper for list of items in a file
 
 ***
 
 ## Get it!
 
+Cli
+
 ```
-npm install --save-dev query-preperator
+npm install query-preperator
 ```
 
 ***
 
-## Usage
+## Usage CLI
+
+```
+queryprep -b -d <file>
+```
+
+options:   
+-b brackets  
+-d double qoutes
+
+## Usage API
 
 ``` js
 var queryPreperator = require('queryPreperator')
@@ -36,7 +48,7 @@ queryPreperator(file, 'brackets', false, function (err, data) {
 
 file: path to file  
 type: 'brackets', 'double quotes'  
-save: logical save results to file, if false the result will be logged to the console
+save: logical save results to file, if false the result will be logged to the console  
 cb: error first callback  
 
 ***
