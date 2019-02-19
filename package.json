@@ -20,5 +20,8 @@
     "commander": "^2.19.0",
     "minimist": "^1.2.0",
     "tape": "^4.10.0"
+  },
+  "devDependencies": {
+    "is-query-valid": "0.0.1"
   }
 }

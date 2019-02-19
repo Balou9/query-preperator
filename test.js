@@ -1,7 +1,9 @@
 var fs = require('fs')
 var tape = require('tape')
 var queryPreperator = require('./index.js')
-var file = './some.txt'
+var file = './lib/some.txt'
+var preppedFileDoubleQuotes = './lib/some0.txt'
+var preppedFileBrackets = './lib/some1.txt'
 
 tape('queryPreperator - brackets - pass pt1', function (t) {
   queryPreperator(file, 'brackets', false, function (err, data) {
@@ -79,6 +81,14 @@ tape('queryPreperator - type opt - fail pt2', function (t) {
 
     t.throws(queryPreperator.bind(null, file, '419', false), 'brackets is throwing')
     t.throws(queryPreperator.bind(null, file, '419', false), 'double quotes is throwing 2')
+    t.end()
+
+})
+
+tape('queryPreperator - query has already been prepped - fail pt3', function (t) {
+
+    t.throws(queryPreperator.bind(null, preppedFileBrackets, 'brackets', false), 'brackets is throwing')
+    t.throws(queryPreperator.bind(null, preppedFileDoubleQuotes, 'double quotes', false), 'double quotes is throwing 2')
     t.end()
 
 })

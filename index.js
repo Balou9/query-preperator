@@ -1,10 +1,16 @@
 var fs = require('fs')
+var isQueryValid = require('is-query-valid')
 
 function queryPreperator (file, type, save, cb) {
   if (typeof file != 'string') throw new TypeError('file should be string')
   if (!(type == 'brackets' || type == 'double quotes')) throw new TypeError('available types')
   fs.readFile(file, function (err, data) {
     if (err) cb(err)
+//    if (isQueryValid.bind(null, data)) throw new TypeError('file has already been prepped')
+    isQueryValid(data.toString(), function (err, is) {
+      if (err) cb(err)
+      console.log(is)
+    })
     data = data.toString().split('\r\n')
     .filter( function (each) {
       if (each != '') return each
