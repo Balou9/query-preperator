@@ -2,29 +2,25 @@ var fs = require('fs')
 var isQueryValid = require('is-query-valid')
 
 function queryPreperator (file, type, save, cb) {
-  if (typeof file != 'string') throw new TypeError('file should be string')
-  if (!(type == 'brackets' || type == 'double quotes')) throw new TypeError('available types')
-  fs.readFile(file, function (err, data) {
+  if (typeof file != 'string') throw TypeError('file should be string')
+  if (!(type == 'brackets' || type == 'double quotes')) throw Error('Available types: `brackets` `double quotes`')
+  fs.readFile(file, (err, data) => {
     if (err) cb(err)
-//    if (isQueryValid.bind(null, data)) throw new TypeError('file has already been prepped')
-    isQueryValid(data.toString(), function (err, is) {
-      if (err) cb(err)
-      console.log(is)
-    })
-    data = data.toString().split('\r\n')
-    .filter( function (each) {
-      if (each != '') return each
-    }).map( function (each) {
-      if (type == 'brackets') return each = '[' + each + ']'
-      else if (type == 'double quotes') return each = '"' + each + '"'
-      else return each
-    }).map( function (each, i) {
-      if (i == 0) return each
-      else return ',' + each
+    data = data.toString()
+     .split('\r\n')
+     .filter( (each) => {
+       if (each != '') return each
+    }).map( (each, i, arr) => {
+        if (isQueryValid(arr)) throw Error('File has already been prepped')
+        else if (type == 'brackets') return each = '[' + each + ']'
+        else if (type == 'double quotes') return each = '"' + each + '"'
+    }).map( (each, i) => {
+        if (i == 0) return each
+        else return ',' + each
     }).join('\r\n')
 
     if (save) {
-      fs.writeFile(file, data, function (err) {
+      fs.writeFile(file, data, (err) => {
         if (err) cb(err)
         cb(null, 'Items have been preped with ' + type + '.')
       })

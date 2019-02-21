@@ -4,67 +4,77 @@ var queryPreperator = require('./index.js')
 var file = './lib/some.txt'
 var preppedFileDoubleQuotes = './lib/some0.txt'
 var preppedFileBrackets = './lib/some1.txt'
+var file2test = './lib/some2test.txt'
 
-tape('queryPreperator - brackets - pass pt1', function (t) {
-  queryPreperator(file, 'brackets', false, function (err, data) {
+var isBrackets = (str) => /^\[.*\]$/s.test(str)
+var isDoubleQuoted = (str) => /^\".*\"$/s.test(str)
 
-    function isbrackets (str) {
-      return /^\[.*\]$/s.test(str)
-    }
-
+tape('queryPreperator - brackets - pass pt1', (t) => {
+  queryPreperator(file, 'brackets', false, (err, data) => {
     if (err) t.end(err)
     t.true(data, 'true')
-    t.true(isbrackets(data), 'isbrackets')
+    t.true(isBrackets(data), 'isBrackets')
     t.end()
   })
 })
 
-tape('queryPreperator - brackets + save file - pass pt2', function (t) {
-  queryPreperator(file, 'brackets', true, function (err, data) {
-
-    function isbrackets (str) {
-      return /^\[.*\]$/s.test(str)
-    }
-
+tape('queryPreperator - brackets + save file - pass pt2', (t) => {
+  fs.copyFile(file, file2test, (err) => {
     if (err) t.end(err)
-    t.true(data, 'true')
 
-    fs.readFile(file, function (err, data) {
+    fs.readdir('./lib', (err, files) => {
       if (err) t.end(err)
-      t.true(isbrackets(data))
-      t.end()
+      t.true(files.indexOf('some2test.txt') > 1, 'test file true')
+
+      queryPreperator(file2test, 'brackets', true, (err, data) => {
+        if (err) t.end(err)
+        t.true(data)
+
+        fs.readFile(file2test, (err, data) => {
+          if (err) t.end(err)
+          t.true(isBrackets(data), 'isBrackets')
+
+          fs.unlink(file2test, (err) => {
+            if (err) t.end(err)
+            t.end()
+          })
+        })
+      })
     })
   })
 })
 
-tape('queryPreperator - double quotes - pass pt1', function (t) {
-  queryPreperator(file, 'double quotes', false, function (err, data) {
-
-    function isdoublequoted (str) {
-      return /^\".*\"$/s.test(str)
-    }
-
+tape('queryPreperator - double quotes - pass pt3', (t) => {
+  queryPreperator(file, 'double quotes', false, (err, data) => {
     if (err) t.end(err)
     t.true(data, 'true')
-    t.true(isdoublequoted(data), 'is double quoted')
+    t.true(isDoubleQuoted(data), 'is double quoted')
     t.end()
   })
 })
 
-tape('queryPreperator - double quotes + save file - pass pt2', function (t) {
-  queryPreperator(file, 'double quotes', true, function (err, data) {
-
-    function isdoublequoted (str) {
-      return /^\".*\"$/s.test(str)
-    }
-
+tape('queryPreperator - double quotes + save file - pass pt4', (t) => {
+  fs.copyFile(file, file2test, (err) => {
     if (err) t.end(err)
-    t.true(data, 'true')
 
-    fs.readFile(file, function (err, data) {
+    fs.readdir('./lib', (err, files) => {
       if (err) t.end(err)
-      t.true(isdoublequoted(data))
-      t.end()
+      t.true(files.indexOf('some2test.txt') > 1, 'test file true')
+
+      queryPreperator(file2test, 'double quotes', true, (err, data) => {
+        if (err) t.end(err)
+        t.true(data)
+
+        fs.readFile(file2test, (err, data) => {
+          if (err) t.end(err)
+          t.true(isDoubleQuoted(data), 'isDoubleQuoted')
+
+          fs.unlink(file2test, (err) => {
+            if (err) t.end(err)
+            t.end()
+          })
+        })
+      })
     })
   })
 })
@@ -78,17 +88,13 @@ tape('queryPreperator - file opt - fail pt1', function (t) {
 })
 
 tape('queryPreperator - type opt - fail pt2', function (t) {
-
     t.throws(queryPreperator.bind(null, file, '419', false), 'brackets is throwing')
     t.throws(queryPreperator.bind(null, file, '419', false), 'double quotes is throwing 2')
     t.end()
 
 })
 
-tape('queryPreperator - query has already been prepped - fail pt3', function (t) {
-
-    t.throws(queryPreperator.bind(null, preppedFileBrackets, 'brackets', false), 'brackets is throwing')
-    t.throws(queryPreperator.bind(null, preppedFileDoubleQuotes, 'double quotes', false), 'double quotes is throwing 2')
+tape.skip('queryPreperator - has been prepped already', (t) => {
+    t.throws(queryPreperator.bind(null, preppedFileBrackets, 'brackets', false), 'is throwing')
     t.end()
-
 })

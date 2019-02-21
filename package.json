@@ -18,10 +18,9 @@
   "homepage": "https://github.com/Balou9/query-preperator#readme",
   "dependencies": {
     "commander": "^2.19.0",
+    "is-query-valid": "0.0.2",
     "minimist": "^1.2.0",
-    "tape": "^4.10.0"
+    "tape": "^4.10.1"
   },
-  "devDependencies": {
-    "is-query-valid": "0.0.1"
-  }
+  "devDependencies": {}
 }

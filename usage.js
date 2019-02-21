@@ -1,9 +1,9 @@
 var queryPreperator = require('./index.js')
-var file = process.argv[2] || './lib/some0.txt'
-var preppedFileBrackets = './lib/some0.txt'
-var preppedFileDoubleQuotes = './lib/some1.txt'
+var file = process.argv[2] || './lib/some.txt'
+var preppedFileDoubleQuotes = './lib/some0.txt'
+var preppedFileBrackets = './lib/some1.txt'
 
-queryPreperator(preppedFileBrackets, 'brackets', true, function (err, data) {
+queryPreperator(preppedFileDoubleQuotes, 'double quotes', false, (err, data) => {
   if (err) throw err
   console.log(data)
 })
