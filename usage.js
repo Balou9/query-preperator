@@ -3,7 +3,7 @@ var file = process.argv[2] || './lib/some.txt'
 var preppedFileDoubleQuotes = './lib/some0.txt'
 var preppedFileBrackets = './lib/some1.txt'
 
-queryPreperator(preppedFileBrackets, 'brackets', false, (err, data) => {
+queryPreperator(preppedFileDoubleQuotes, 'brackets', false, (err, data) => {
   if (err) throw err
   console.log(data)
 })

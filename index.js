@@ -10,26 +10,30 @@ function queryPreperator (file, type, save, cb) {
        if (each != '') return each
     })
 
-    if (isQueryValid(query) === true) { cb(null, 'File has already been prepped') }
-    else {
-      var prepped = query.map( (each, i, arr) => {
-        if (type == 'brackets') return each = '[' + each + ']'
-        else if (type == 'double quotes') return each = '"' + each + '"'
-      }).map( (each, i) => {
-        if (i == 0) return each
-        else return ',' + each
-      }).join('\r\n')
-
-      if (save) {
-        fs.writeFile(file, prepped, (err) => {
-          if (err) cb(err)
-          cb(null, 'Items have been preped with ' + type + '.')
-        })
-      }
+    isQueryValid(query, (err, isTrue) => {
+      if (err) cb(err)
+      else if (isTrue === true) { cb(null, 'File has already been prepped') }
       else {
-        cb(null, prepped)
+        var prepped = query.map( (each, i, arr) => {
+          if (type == 'brackets') return each = '[' + each + ']'
+          else if (type == 'double quotes') return each = '"' + each + '"'
+        }).map( (each, i) => {
+          if (i == 0) return each
+          else return ',' + each
+        }).join('\r\n')
+
+        if (save) {
+          fs.writeFile(file, prepped, (err) => {
+            if (err) cb(err)
+            cb(null, 'Items have been preped with ' + type + '.')
+          })
+        }
+        else {
+          cb(null, prepped)
+        }
       }
-    }
+    })
+    //if (isQueryValid(query) === true) { cb(null, 'File has already been prepped') }
   })
 }
 

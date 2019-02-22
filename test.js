@@ -79,15 +79,15 @@ tape('queryPreperator - double quotes + save file - pass pt4', (t) => {
   })
 })
 
-tape.only('queryPreperator - has been prepped already', (t) => {
-  queryPreperator(preppedFileBrackets, 'brackets', false, (err, data) => {
+tape('queryPreperator - has been prepped already', (t) => {
+  queryPreperator(preppedFileBrackets, 'brackets', false, (err, alreadyPreppedB) => {
     if (err) t.end(err)
-    t.equal(data, 'File has already been prepped', 'brackets true')
+    t.equal(alreadyPreppedB, 'File has already been prepped', 'brackets true')
   })
 
-  queryPreperator(preppedFileDoubleQuotes, 'double quotes', false, (err, data) => {
+  queryPreperator(preppedFileDoubleQuotes, 'double quotes', false, (err, alreadyPreppedDq) => {
     if (err) t.end(err)
-    t.equal(data, 'File has already been prepped', 'double quotes true')
+    t.equal(alreadyPreppedDq, 'File has already been prepped', 'double quotes true')
     t.end()
   })
 })
