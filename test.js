@@ -75,23 +75,10 @@ tape('queryPreperator - double quotes + save file - pass pt4', (t) => {
 })
 
 tape('queryPreperator - brackets been prepped already', (t) => {
-  fs.copyFile(preppedFileBrackets, file2test, (err) => {
+  queryPreperator(preppedFileBrackets, 'brackets', false, (err, alreadyPreppedB) => {
     if (err) t.end(err)
-
-    fs.readdir('./lib', (err, files) => {
-      if (err) t.end(err)
-      t.true(files.indexOf('some2test.txt') > 1, 'test file true')
-      timeo.call()
-      queryPreperator(file2test, 'brackets', false, (err, alreadyPreppedB) => {
-        if (err) t.end(err)
-        t.equal(alreadyPreppedB, 'File has already been prepped')
-
-        fs.unlink(file2test, (err) => {
-          if (err) t.end(err)
-          t.end()
-        })
-      })
-    })
+    t.equal(alreadyPreppedB, 'File has already been prepped')
+    t.end()
   })
 })
 
