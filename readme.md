@@ -28,12 +28,13 @@ npm install --save query-preperator
 ## Usage CLI
 
 ```
-queryprep -b -d <file>
+queryprep -b -d -s <file>
 ```
 
 options:   
--b brackets  
--d double qoutes
+-b preps query with brackets  
+-d preps query with double qoutes
+-s save prepped query to file
 
 ## Usage API
 

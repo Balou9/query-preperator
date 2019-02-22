@@ -9,8 +9,7 @@ function queryPreperator (file, type, save, cb) {
     data = data.toString().split('\r\n').filter( (each) => {
        if (each != '') return each
     })
-
-    if (isQueryValid(data)) cb(null, 'File has already been prepped')
+    if (isQueryValid(data)) { cb(null, 'File has already been prepped') }
     else {
       data = data.map( (each) => {
         if (type == 'brackets') return each = '[' + each + ']'
