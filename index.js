@@ -6,12 +6,13 @@ function queryPreperator (file, type, save, cb) {
   if (!(type == 'brackets' || type == 'double quotes')) throw new Error('Available types: `brackets` `double quotes`')
   fs.readFile(file, (err, data) => {
     if (err) cb(err)
-    query = data.toString().split('\r\n').filter( (each) => {
+    var query = data.toString().split('\r\n').filter( (each) => {
        if (each != '') return each
     })
+
     if (isQueryValid(query) === true) { cb(null, 'File has already been prepped') }
     else {
-      prepped = query.map( (each) => {
+      var prepped = query.map( (each, i, arr) => {
         if (type == 'brackets') return each = '[' + each + ']'
         else if (type == 'double quotes') return each = '"' + each + '"'
       }).map( (each, i) => {
