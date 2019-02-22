@@ -6,12 +6,12 @@ function queryPreperator (file, type, save, cb) {
   if (!(type == 'brackets' || type == 'double quotes')) throw new Error('Available types: `brackets` `double quotes`')
   fs.readFile(file, (err, data) => {
     if (err) cb(err)
-    data = data.toString().split('\r\n').filter( (each) => {
+    query = data.toString().split('\r\n').filter( (each) => {
        if (each != '') return each
     })
-    if (isQueryValid(data)) { cb(null, 'File has already been prepped') }
+    if (isQueryValid(query) === true) { cb(null, 'File has already been prepped') }
     else {
-      data = data.map( (each) => {
+      prepped = query.map( (each) => {
         if (type == 'brackets') return each = '[' + each + ']'
         else if (type == 'double quotes') return each = '"' + each + '"'
       }).map( (each, i) => {
@@ -20,13 +20,13 @@ function queryPreperator (file, type, save, cb) {
       }).join('\r\n')
 
       if (save) {
-        fs.writeFile(file, data, (err) => {
+        fs.writeFile(file, prepped, (err) => {
           if (err) cb(err)
           cb(null, 'Items have been preped with ' + type + '.')
         })
       }
       else {
-        cb(null, data)
+        cb(null, prepped)
       }
     }
   })
