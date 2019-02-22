@@ -79,7 +79,20 @@ tape('queryPreperator - double quotes + save file - pass pt4', (t) => {
   })
 })
 
-tape('queryPreperator - file opt - fail pt1', function (t) {
+tape('queryPreperator - has been prepped already', (t) => {
+  queryPreperator(preppedFileBrackets, 'brackets', false, (err, data) => {
+    if (err) t.end(err)
+    t.equal(data, 'File has already been prepped', 'brackets true')
+  })
+
+  queryPreperator(preppedFileBrackets, 'double quotes', false, (err, data) => {
+    if (err) t.end(err)
+    t.equal(data, 'File has already been prepped', 'double quotes true')
+    t.end()
+  })
+})
+
+tape('queryPreperator - file opt - fail pt1', (t) => {
 
     t.throws(queryPreperator.bind(null, 419, 'brackets', false), 'brackets is throwing')
     t.throws(queryPreperator.bind(null, 419, 'double quotes', false), 'double qoutes is throwing 2')
@@ -87,14 +100,9 @@ tape('queryPreperator - file opt - fail pt1', function (t) {
 
 })
 
-tape('queryPreperator - type opt - fail pt2', function (t) {
+tape('queryPreperator - type opt - fail pt2', (t) => {
     t.throws(queryPreperator.bind(null, file, '419', false), 'brackets is throwing')
     t.throws(queryPreperator.bind(null, file, '419', false), 'double quotes is throwing 2')
     t.end()
 
-})
-
-tape.skip('queryPreperator - has been prepped already', (t) => {
-    t.throws(queryPreperator.bind(null, preppedFileBrackets, 'brackets', false), 'is throwing')
-    t.end()
 })
