@@ -9,35 +9,38 @@ program
 
 program
   .command('queryprep <file>')
-  .action(function (file) {
+  .action((file) => {
 
-    if ((program.brackets) & !(program.save)) {
-      queryPreperator(file, 'brackets', false, function (err, data) {
-        if (err) throw err
-        console.log(data)
-      })
+    if (program.brackets) {
+      if (program.save) {
+        queryPreperator(file, 'brackets', true, function (err, data) {
+          if (err) throw err
+          console.log(data)
+        })
+      }
+        else {
+          queryPreperator(file, 'brackets', false, function (err, data) {
+            if (err) throw err
+            console.log(data)
+          })
+        }
+      }
+
+    else if (program.doubleQuotes) {
+      if (program.save) {
+        queryPreperator(file, 'double quotes', true, function (err, data) {
+          if (err) throw err
+          console.log(data)
+        })
+      }
+      else {
+        queryPreperator(file, 'double quotes', false, function (err, data) {
+          if (err) throw err
+          console.log(data)
+        })
+      }
     }
 
-    else if ((program.brackets) & (program.save)) {
-      queryPreperator(file, 'brackets', true, function (err, data) {
-        if (err) throw err
-        console.log(data)
-      })
-    }
-
-    else if ((program.doubleQuotes) & !(program.save)) {
-      queryPreperator(file, 'double quotes', false, function (err, data) {
-        if (err) throw err
-        console.log(data)
-      })
-    }
-
-    else if ((program.doubleQuotes) & (program.save)) {
-      queryPreperator(file, 'double quotes', true, function (err, data) {
-        if (err) throw err
-        console.log(data)
-      })
-    }
   })
 
 program.parse(process.argv)
