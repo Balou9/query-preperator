@@ -33,8 +33,8 @@ queryprep -b -d -s <file>
 
 options:   
 -b preps query with brackets  
--d preps query with double qoutes
--s save prepped query to file
+-d preps query with double qoutes  
+-s saves prepped query to file
 
 ## Usage API
 

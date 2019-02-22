@@ -1,7 +1,8 @@
 var fs = require('fs')
 var isQueryValid = require('is-query-valid')
 
-function queryPreperator (file, type, save, cb) {
+module.exports = queryPreperator = (file, type, save, cb) => {
+
   if (typeof file != 'string') throw new TypeError('file should be string')
   if (!(type == 'brackets' || type == 'double quotes')) throw new Error('Available types: `brackets` `double quotes`')
   fs.readFile(file, (err, data) => {
@@ -12,7 +13,7 @@ function queryPreperator (file, type, save, cb) {
 
     isQueryValid(query, (err, isTrue) => {
       if (err) cb(err)
-      else if (isTrue === true) { cb(null, 'File has already been prepped') }
+      if (isTrue === true) { cb(null, 'File has already been prepped') }
       else {
         var prepped = query.map( (each, i, arr) => {
           if (type == 'brackets') return each = '[' + each + ']'
@@ -25,16 +26,13 @@ function queryPreperator (file, type, save, cb) {
         if (save) {
           fs.writeFile(file, prepped, (err) => {
             if (err) cb(err)
-            cb(null, 'Items have been preped with ' + type + '.')
           })
+          cb(null, 'Items have been preped with ' + type + '.')
         }
         else {
           cb(null, prepped)
         }
       }
     })
-    //if (isQueryValid(query) === true) { cb(null, 'File has already been prepped') }
   })
 }
-
-module.exports = queryPreperator

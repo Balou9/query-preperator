@@ -30,14 +30,9 @@ tape('queryPreperator - brackets + save file - pass pt2', (t) => {
         if (err) t.end(err)
         t.true(data)
 
-        fs.readFile(file2test, (err, data) => {
+        fs.unlink(file2test, (err) => {
           if (err) t.end(err)
-          t.true(isBrackets(data), 'isBrackets')
-
-          fs.unlink(file2test, (err) => {
-            if (err) t.end(err)
-            t.end()
-          })
+          t.end()
         })
       })
     })
@@ -65,49 +60,67 @@ tape('queryPreperator - double quotes + save file - pass pt4', (t) => {
         if (err) t.end(err)
         t.true(data)
 
-        fs.readFile(file2test, (err, data) => {
+        fs.unlink(file2test, (err) => {
           if (err) t.end(err)
-          t.true(isDoubleQuoted(data), 'isDoubleQuoted')
-
-          fs.unlink(file2test, (err) => {
-            if (err) t.end(err)
-            t.end()
-          })
+          t.end()
         })
       })
     })
   })
 })
 
-tape('queryPreperator - has been prepped already', (t) => {
-  queryPreperator(preppedFileBrackets, 'brackets', false, (err, alreadyPreppedB) => {
+tape('queryPreperator - brackets been prepped already', (t) => {
+  fs.copyFile(preppedFileBrackets, file2test, (err) => {
     if (err) t.end(err)
-    t.equal(alreadyPreppedB, 'File has already been prepped', 'brackets true')
-    t.end()
+
+    fs.readdir('./lib', (err, files) => {
+      if (err) t.end(err)
+      t.true(files.indexOf('some2test.txt') > 1, 'test file true')
+
+      queryPreperator(file2test, 'brackets', false, (err, alreadyPreppedB) => {
+        if (err) t.end(err)
+        t.equal(alreadyPreppedB, 'File has already been prepped')
+
+        fs.unlink(file2test, (err) => {
+          if (err) t.end(err)
+          t.end()
+        })
+      })
+    })
   })
 })
 
 
 
-tape('queryPreperator - has been prepped already', (t) => {
-  queryPreperator(preppedFileDoubleQuotes, 'double quotes', false, (err, alreadyPreppedDq) => {
+tape('queryPreperator - double quotes been prepped already', (t) => {
+  fs.copyFile(preppedFileDoubleQuotes, file2test, (err) => {
     if (err) t.end(err)
-    t.equal(alreadyPreppedDq, 'File has already been prepped', 'double quotes true')
-    t.end()
+
+    fs.readdir('./lib', (err, files) => {
+      if (err) t.end(err)
+      t.true(files.indexOf('some2test.txt') > 1, 'test file true')
+
+      queryPreperator(file2test, 'double quotes', false, (err, alreadyPreppedDq) => {
+        if (err) t.end(err)
+        t.equal(alreadyPreppedDq, 'File has already been prepped')
+
+        fs.unlink(file2test, (err) => {
+          if (err) t.end(err)
+          t.end()
+        })
+      })
+    })
   })
 })
 
 tape('queryPreperator - file opt - fail pt1', (t) => {
-
     t.throws(queryPreperator.bind(null, 419, 'brackets', false), 'brackets is throwing')
     t.throws(queryPreperator.bind(null, 419, 'double quotes', false), 'double qoutes is throwing 2')
     t.end()
-
 })
 
 tape('queryPreperator - type opt - fail pt2', (t) => {
     t.throws(queryPreperator.bind(null, file, '419', false), 'brackets is throwing')
     t.throws(queryPreperator.bind(null, file, '419', false), 'double quotes is throwing 2')
     t.end()
-
 })
