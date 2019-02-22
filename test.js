@@ -8,11 +8,6 @@ var file2test = './lib/some2test.txt'
 
 var isBrackets = (str) => /^\[.*\]$/s.test(str)
 var isDoubleQuoted = (str) => /^\".*\"$/s.test(str)
-function timeo () {
-  setTimeout(function () {
-
-  }, 3000);
-}
 
 tape('queryPreperator - brackets - pass pt1', (t) => {
   queryPreperator(file, 'brackets', false, (err, data) => {
@@ -75,19 +70,17 @@ tape('queryPreperator - double quotes + save file - pass pt4', (t) => {
 })
 
 tape('queryPreperator - brackets been prepped already', (t) => {
-  queryPreperator(preppedFileBrackets, 'brackets', false, (err, alreadyPreppedB) => {
+  queryPreperator(preppedFileBrackets, 'brackets', false, (err, data) => {
     if (err) t.end(err)
-    t.equal(alreadyPreppedB, 'File has already been prepped')
+    t.true(data === 'File has already been prepped')
     t.end()
   })
 })
 
-
-
 tape('queryPreperator - double quotes been prepped already', (t) => {
-  queryPreperator(preppedFileDoubleQuotes, 'double quotes', false, (err, alreadyPreppedDq) => {
+  queryPreperator(preppedFileDoubleQuotes, 'brackets', false, (err, data) => {
     if (err) t.end(err)
-    t.equal(alreadyPreppedDq, 'File has already been prepped')
+    t.equal(data, 'File has already been prepped')
     t.end()
   })
 })
