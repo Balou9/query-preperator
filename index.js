@@ -13,7 +13,7 @@ module.exports = queryPreperator = (file, type, save, cb) => {
 
     isQueryValid(query, (err, isTrue) => {
       if (err) cb(err)
-      if (isTrue === true) { cb(null, 'File has already been prepped') }
+      else if (isTrue === true) { cb(null, 'File has already been prepped') }
       else {
         var prepped = query.map( (each, i, arr) => {
           if (type == 'brackets') return each = '[' + each + ']'
