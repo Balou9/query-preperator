@@ -83,8 +83,13 @@ tape('queryPreperator - has been prepped already', (t) => {
   queryPreperator(preppedFileBrackets, 'brackets', false, (err, alreadyPreppedB) => {
     if (err) t.end(err)
     t.equal(alreadyPreppedB, 'File has already been prepped', 'brackets true')
+    t.end()
   })
+})
 
+
+
+tape('queryPreperator - has been prepped already', (t) => {
   queryPreperator(preppedFileDoubleQuotes, 'double quotes', false, (err, alreadyPreppedDq) => {
     if (err) t.end(err)
     t.equal(alreadyPreppedDq, 'File has already been prepped', 'double quotes true')
