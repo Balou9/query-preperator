@@ -15,7 +15,8 @@ module.exports = queryPreperator = (file, type, save, cb) => {
       if (err) cb(err)
       if (isTrue === true) { cb(null, 'File has already been prepped') }
       else {
-        var prepped = query.map( (each, i, arr) => {
+        var prepped = query.toString().split('\r\n').map( (each, i, arr) => {
+          console.log(arr)
           if (type == 'brackets') return each = '[' + each + ']'
           else if (type == 'double quotes') return each = '"' + each + '"'
         }).map( (each, i) => {
